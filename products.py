@@ -14,26 +14,26 @@ def add_product(products):
     
     new_product = {"name" : product_name, "price": price, "quantity": quantity, "category": category}
     products.append(new_product)
-    
+    print("Product added successfully!")
     return True
 
 def list_products(products):
     print("----------Products----------")
     for product in products:
         print(f"Name: {product['name']}")
-        print(f"Price: {product['price']:.2f}")
+        print(f"Price: R {product['price']:.2f}")
         print(f"Quantity: {product['quantity']}")
         print(f"Category: {product['category']}")
         print("-" *20)
         
-def update_products(products):
+def update_product(products):
     list_products(products)
     name = input("Enter the name of product to update: ").strip().lower()
     
     product = find_product(products,name)
     
     if product:
-        product["price"] = float(input("Enter the new price: "))
+        product["price"] = float(input("Enter the new price: R "))
         product["quantity"] = int(input("Enter the new quantity: "))
         print("Product updated successfully!")
         return True
@@ -41,7 +41,7 @@ def update_products(products):
     print("product not found")
     return False
 
-def delete_product(products,):
+def delete_product(products):
     list_products(products)
     name =input("Enter the name of the product you want to delete: ").strip().lower()
     
@@ -59,15 +59,41 @@ def find_product(products, name):
     return None
 
 def search_product(products):
-    name =input("Enter the name of the product you want to delete: ").strip().lower()
+    name =input("Enter the name of the product you want to search: ").strip().lower()
     product = find_product(products,name)
     
     if product:
         print(f"Name: {product['name']}")
-        print(f"Price: {product['price']:.2f}")
+        print(f"Price: R {product['price']:.2f}")
         print(f"Quantity: {product['quantity']}")
         print(f"Category: {product['category']}")
+    else:
+        print("product not found")
         
+sales = []
+        
+def sell_product(products,sales):
+    name = input("Enter the name of the product you want to sell: ").strip()
+    quantity = int(input("Enter the quantity of the product to sell: ").strip())
+    
+    product = find_product(products,name)
+    if product:
+        if quantity <= product["quantity"]:
+            product["quantity"] -= quantity
+            new_sale = {
+                "product": product["name"], 
+                "price": product["price"], 
+                "quantity": quantity, 
+                "total": product["price"]* quantity
+            }
+            sales.append(new_sale)
+            print("Sale completed successfully")
+        else:
+            print("Not enough stock!")
+    else:
+        print("product not found")
+
+    
 
 while True:
     print("-----Business Management System-----")
@@ -75,7 +101,9 @@ while True:
     print("2. List Products")
     print("3. Update products")
     print("4. Delete products")
-    print("5. Exit")
+    print("5. Search Products")
+    print("6. Sell Products")
+    print("7. Exit")
     
     
     choice = input("Enter you choice: ")
@@ -85,10 +113,14 @@ while True:
     elif choice == "2":
         list_products(products)
     elif choice == "3":
-        update_products(products)
+        update_product(products)
     elif choice == "4":
         delete_product(products)
     elif choice == "5":
+        search_product(products)
+    elif choice == "6":
+            sell_product(products,sales)
+    elif choice == "7":
         print("Exiting...")
         break
     else:
