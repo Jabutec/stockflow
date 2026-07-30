@@ -30,12 +30,13 @@ def update_products(products):
     list_products(products)
     name = input("Enter the name of product to update: ").strip().lower()
     
-    for product in products:
-        if name.lower() == product["name"].lower():
-            product["price"] = float(input("Enter the new price: "))
-            product["quantity"] = int(input("Enter the new quantity: "))
-            print("Product updated successfully!")
-            return True
+    product = find_product(products,name)
+    
+    if product:
+        product["price"] = float(input("Enter the new price: "))
+        product["quantity"] = int(input("Enter the new quantity: "))
+        print("Product updated successfully!")
+        return True
         
     print("product not found")
     return False
@@ -43,12 +44,30 @@ def update_products(products):
 def delete_product(products,):
     list_products(products)
     name =input("Enter the name of the product you want to delete: ").strip().lower()
-    found = False
-    for product in products:
-        if name.lower() == product['name'].lower():
-            products.remove(name)
-            found = True
+    
+    product = find_product(products,name)
+    
+    if product:
+        products.remove(product)
         return True
+    return False
+
+def find_product(products, name):
+    for product in products:
+        if name.lower() == product["name"].lower():
+            return product
+    return None
+
+def search_product(products):
+    name =input("Enter the name of the product you want to delete: ").strip().lower()
+    product = find_product(products,name)
+    
+    if product:
+        print(f"Name: {product['name']}")
+        print(f"Price: {product['price']:.2f}")
+        print(f"Quantity: {product['quantity']}")
+        print(f"Category: {product['category']}")
+        
 
 while True:
     print("-----Business Management System-----")
