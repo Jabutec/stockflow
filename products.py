@@ -1,10 +1,46 @@
-products = [
-    {"name" : "milk", "price": 20.00, "quantity": 50, "category": "dairy"},
-    {"name" : "Bread", "price": 22.25, "quantity": 25, "category": "bakery"},
-    {"name" : "popcorn", "price": 15.00, "quantity": 100, "category": "snacks"},
-    {"name" : "juice", "price": 18.00, "quantity": 70, "category": "beverages"},
-]
+import json
 
+def load_products():
+    try:
+        with open("products.json", "r") as file:
+            products = json.load(file)
+            return products
+    except FileNotFoundError:
+        return []
+
+def save_products(products):
+    try:
+        with open("products.json", "w") as file:
+            json.dump(products, file, indent=4)
+    except Exception as e:
+        print(f"Error saving product{e}")
+    
+def load_sales():
+    try:
+        with open("sales.json", "r") as file:
+            sales = json.load(file)
+            return sales
+    except FileNotFoundError:
+        return []
+
+def save_sales(sales):
+    try:
+        with open("sales.json", "w") as file:
+            json.dump(sales, file, indent=4)
+    except Exception as e:
+        print(f"Error saving sales {e}")
+    
+    
+products = load_products()
+sales = load_sales()
+    
+    
+# products = [
+#     {"name" : "milk", "price": 20.00, "quantity": 50, "category": "dairy"},
+#     {"name" : "Bread", "price": 22.25, "quantity": 25, "category": "bakery"},
+#     {"name" : "popcorn", "price": 15.00, "quantity": 100, "category": "snacks"},
+#     {"name" : "juice", "price": 18.00, "quantity": 70, "category": "beverages"},
+# ]
 
 def add_product(products):
     product_name = input("Enter the name of product: ").strip().lower()
@@ -14,6 +50,7 @@ def add_product(products):
     
     new_product = {"name" : product_name, "price": price, "quantity": quantity, "category": category}
     products.append(new_product)
+    save_products(products)
     print("Product added successfully!")
     return True
 
@@ -35,6 +72,7 @@ def update_product(products):
     if product:
         product["price"] = float(input("Enter the new price: R "))
         product["quantity"] = int(input("Enter the new quantity: "))
+        save_products(products)
         print("Product updated successfully!")
         return True
         
@@ -49,6 +87,8 @@ def delete_product(products):
     
     if product:
         products.remove(product)
+        save_products(products)
+        print("Product has been deleted!")
         return True
     return False
 
@@ -70,7 +110,8 @@ def search_product(products):
     else:
         print("product not found")
         
-sales = []
+# sales = []
+sales = load_sales()
         
 def sell_product(products,sales):
     name = input("Enter the name of the product you want to sell: ").strip()
@@ -87,11 +128,22 @@ def sell_product(products,sales):
                 "total": product["price"]* quantity
             }
             sales.append(new_sale)
+            save_products(products)
+            save_sales(sales)
             print("Sale completed successfully")
         else:
             print("Not enough stock!")
     else:
         print("product not found")
+
+def view_sales(sales):
+    print("----------Sales-----------")
+    for sale in sales:
+        print(f"Name: {sale['product']}")
+        print(f"Price: R {sale['price']:.2f}")
+        print(f"Quantity: {sale['quantity']}")
+        print(f"Total: R {sale['total']:.2f}")
+        print("-" *20)
 
     
 

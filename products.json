@@ -1,0 +1,14 @@
+[
+    {
+        "name": "coffee",
+        "price": 13.5,
+        "quantity": 20,
+        "category": "beverages"
+    },
+    {
+        "name": "biscuits",
+        "price": 20.0,
+        "quantity": 38,
+        "category": "snacks"
+    }
+]
