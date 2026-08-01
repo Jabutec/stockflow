@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# Data files
+products.json
+sales.json
+customers.json
