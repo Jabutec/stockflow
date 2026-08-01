@@ -4,5 +4,11 @@
         "price": 20.0,
         "quantity": 2,
         "total": 40.0
+    },
+    {
+        "product": "popcorn",
+        "price": 12.0,
+        "quantity": 2,
+        "total": 24.0
     }
 ]

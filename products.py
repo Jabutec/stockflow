@@ -1,5 +1,6 @@
 import json
 
+
 def load_products():
     try:
         with open("products.json", "r") as file:
@@ -15,24 +16,9 @@ def save_products(products):
     except Exception as e:
         print(f"Error saving product{e}")
     
-def load_sales():
-    try:
-        with open("sales.json", "r") as file:
-            sales = json.load(file)
-            return sales
-    except FileNotFoundError:
-        return []
-
-def save_sales(sales):
-    try:
-        with open("sales.json", "w") as file:
-            json.dump(sales, file, indent=4)
-    except Exception as e:
-        print(f"Error saving sales {e}")
-    
     
 products = load_products()
-sales = load_sales()
+
     
     
 # products = [
@@ -109,73 +95,8 @@ def search_product(products):
         print(f"Category: {product['category']}")
     else:
         print("product not found")
+    
+
         
-# sales = []
-sales = load_sales()
-        
-def sell_product(products,sales):
-    name = input("Enter the name of the product you want to sell: ").strip()
-    quantity = int(input("Enter the quantity of the product to sell: ").strip())
-    
-    product = find_product(products,name)
-    if product:
-        if quantity <= product["quantity"]:
-            product["quantity"] -= quantity
-            new_sale = {
-                "product": product["name"], 
-                "price": product["price"], 
-                "quantity": quantity, 
-                "total": product["price"]* quantity
-            }
-            sales.append(new_sale)
-            save_products(products)
-            save_sales(sales)
-            print("Sale completed successfully")
-        else:
-            print("Not enough stock!")
-    else:
-        print("product not found")
-
-def view_sales(sales):
-    print("----------Sales-----------")
-    for sale in sales:
-        print(f"Name: {sale['product']}")
-        print(f"Price: R {sale['price']:.2f}")
-        print(f"Quantity: {sale['quantity']}")
-        print(f"Total: R {sale['total']:.2f}")
-        print("-" *20)
-
-    
-
-while True:
-    print("-----Business Management System-----")
-    print("1. Add products")
-    print("2. List Products")
-    print("3. Update products")
-    print("4. Delete products")
-    print("5. Search Products")
-    print("6. Sell Products")
-    print("7. Exit")
-    
-    
-    choice = input("Enter you choice: ")
-    
-    if choice == "1":
-        add_product(products)
-    elif choice == "2":
-        list_products(products)
-    elif choice == "3":
-        update_product(products)
-    elif choice == "4":
-        delete_product(products)
-    elif choice == "5":
-        search_product(products)
-    elif choice == "6":
-            sell_product(products,sales)
-    elif choice == "7":
-        print("Exiting...")
-        break
-    else:
-        print("invalid choice.")          
             
     

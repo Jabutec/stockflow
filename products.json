@@ -10,5 +10,11 @@
         "price": 20.0,
         "quantity": 38,
         "category": "snacks"
+    },
+    {
+        "name": "popcorn",
+        "price": 12.0,
+        "quantity": 28,
+        "category": "snacks"
     }
 ]
