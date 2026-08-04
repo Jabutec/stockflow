@@ -1,4 +1,4 @@
-from products import products, add_product, list_products, update_product,search_product,delete_product
+from products import products ,add_product, list_products, update_product,handle_search,delete_product
 from sales import sales, sell_product
 
 while True:
@@ -23,7 +23,7 @@ while True:
     elif choice == "4":
         delete_product(products)
     elif choice == "5":
-        search_product(products)
+        handle_search(products)
     elif choice == "6":
             sell_product(products,sales)
     elif choice == "7":

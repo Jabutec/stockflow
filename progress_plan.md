@@ -1,11 +1,6 @@
 # StockFlow — 3 Week Scaling Plan
 
-Goal: grow StockFlow into a genuinely capable business system, with a
-meaningful commit every working day (Mon–Fri). Each day should teach
-something, not just add lines.
-
-Adjust pace as needed — if a day's task takes two days, that's fine.
-The plan bends to your learning, not the other way around.
+Goal: grow StockFlow into a genuinely capable business system.
 
 ---
 
