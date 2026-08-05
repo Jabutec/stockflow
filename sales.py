@@ -16,19 +16,26 @@ def save_sales(sales):
             json.dump(sales, file, indent=4)
     except Exception as e:
         print(f"Error saving sales {e}")
+
+def generate_sale_id(sales):
+    if sales:
+        return max(sale["id"] for sale in sales) +1
+    else:
+        return 1
         
 # sales = []
 sales = load_sales()
         
 def sell_product(products,sales):
-    name = input("Enter the name of the product you want to sell: ").strip()
-    quantity = int(input("Enter the quantity of the product to sell: ").strip())
+    product_ID = int(input("Enter the ID of the product you want to sell: "))
+    quantity = int(input("Enter the quantity of the product to sell: "))
     
-    product = find_product(products,name)
+    product = find_product(products,product_ID)
     if product:
         if quantity <= product["quantity"]:
             product["quantity"] -= quantity
             new_sale = {
+                "id": generate_sale_id(sales),
                 "product": product["name"], 
                 "price": product["price"], 
                 "quantity": quantity, 
@@ -46,6 +53,7 @@ def sell_product(products,sales):
 def view_sales(sales):
     print("----------Sales-----------")
     for sale in sales:
+        print(f"id: {sale['id']}")
         print(f"Name: {sale['product']}")
         print(f"Price: R {sale['price']:.2f}")
         print(f"Quantity: {sale['quantity']}")
