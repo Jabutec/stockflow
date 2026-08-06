@@ -1,5 +1,6 @@
 import json
-from products import find_product, save_products
+from modules.products import find_product, save_products
+from modules.customers import  search_customer, customers
 
 
 def load_sales():
@@ -29,6 +30,10 @@ sales = load_sales()
 def sell_product(products,sales):
     product_ID = int(input("Enter the ID of the product you want to sell: "))
     quantity = int(input("Enter the quantity of the product to sell: "))
+    customer_name = input("Enter the customer name: ").strip().lower()
+    
+    result =  search_customer(customers , customer_name)
+    
     
     product = find_product(products,product_ID)
     if product:
@@ -36,6 +41,7 @@ def sell_product(products,sales):
             product["quantity"] -= quantity
             new_sale = {
                 "id": generate_sale_id(sales),
+                "name": result,
                 "product": product["name"], 
                 "price": product["price"], 
                 "quantity": quantity, 

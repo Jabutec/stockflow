@@ -2,7 +2,7 @@ import json
 
 def load_products():
     try:
-        with open("products.json", "r") as file:
+        with open("data/products.json", "r") as file:
             products = json.load(file)
             return products
     except FileNotFoundError:
@@ -10,7 +10,7 @@ def load_products():
 
 def save_products(products):
     try:
-        with open("products.json", "w") as file:
+        with open("data/products.json", "w") as file:
             json.dump(products, file, indent=4)
     except Exception as e:
         print(f"Error saving product{e}")
