@@ -1,11 +1,11 @@
 import json
 from modules.products import find_product, save_products
-from modules.customers import  search_customer, customers
+from modules.customers import  find_customer, save_customers
 
 
 def load_sales():
     try:
-        with open("sales.json", "r") as file:
+        with open("data/sales.json", "r") as file:
             sales = json.load(file)
             return sales
     except FileNotFoundError:
@@ -13,7 +13,7 @@ def load_sales():
 
 def save_sales(sales):
     try:
-        with open("sales.json", "w") as file:
+        with open("data/sales.json", "w") as file:
             json.dump(sales, file, indent=4)
     except Exception as e:
         print(f"Error saving sales {e}")
@@ -27,21 +27,20 @@ def generate_sale_id(sales):
 # sales = []
 sales = load_sales()
         
-def sell_product(products,sales):
+def sell_product(products, customers, sales):
     product_ID = int(input("Enter the ID of the product you want to sell: "))
     quantity = int(input("Enter the quantity of the product to sell: "))
-    customer_name = input("Enter the customer name: ").strip().lower()
+    customer_id = int(input("Enter the customer ID: "))
     
-    result =  search_customer(customers , customer_name)
-    
-    
+    customer =  find_customer(customers , customer_id)
     product = find_product(products,product_ID)
+    
     if product:
         if quantity <= product["quantity"]:
             product["quantity"] -= quantity
             new_sale = {
                 "id": generate_sale_id(sales),
-                "name": result,
+                "Customer_id": customer["id"],
                 "product": product["name"], 
                 "price": product["price"], 
                 "quantity": quantity, 

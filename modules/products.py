@@ -53,7 +53,7 @@ def list_products(products):
         
 def update_product(products):
     list_products(products)
-    product_ID = int(input("Enter the name of product to update: ").strip().lower())
+    product_ID = int(input("Enter the ID of product to update: "))
     
     product = find_product(products,product_ID)
     

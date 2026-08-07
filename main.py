@@ -10,7 +10,10 @@ while True:
     print("4. Delete products")
     print("5. Search Products")
     print("6. Sell Products")
-    print("7. Exit")
+    print("7. Add customer")
+    print("8. list Customers")
+    print("9. delete customer")
+    print("10. Exit")
     
     
     choice = input("Enter you choice: ")
@@ -26,7 +29,7 @@ while True:
     elif choice == "5":
         handle_search(products)
     elif choice == "6":
-        sell_product(products,sales)
+        sell_product(products,sales, customers)
     elif choice == "7":
         add_customer(customers)
     elif choice == "8":

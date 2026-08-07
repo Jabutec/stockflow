@@ -50,7 +50,7 @@ def list_customers(customers):
         
 def find_customer(customers, customer_id):
     for customer in customers:
-        if customer_id == customer["id"].lower():
+        if customer_id == customer["id"]:
             return customer
     return None
 
@@ -69,7 +69,7 @@ def search_customer(customers, name):
     matches = []
     for customer in customers:
         if name.lower() in customer["name"]:
-            matches.append(customer["name"])
+            matches.append(customer)
     return matches
 
 

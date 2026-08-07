@@ -6,12 +6,12 @@ plans to add persistence, customers, and sales tracking.
 
 # Features:
 
-- \*\*Product management
-- \*\* Inventory tracking
-- \*\*Sales recording
-- \*\*Sales history
+- Product management
+- Inventory tracking
+- Sales recording
+- Sales history
 
-## 📈 Development Progress
+## Development Progress
 
 StockFlow is being built incrementally, with each milestone adding real-world business system features.
 
