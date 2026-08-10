@@ -1,4 +1,5 @@
 import json
+from utils.validators import is_valid_name, is_valid_phone, is_valid_email, is_postive_integer
 
 def load_customers():
     try:
@@ -25,8 +26,20 @@ customers = load_customers()
 
 def add_customer(customers):
     name = input("Enter the name of the customer: ").strip()
+    if not is_valid_name(name):
+        print("Invalid name")
+        return
+    
+    
     phone = input("Enter customer phone number: ").strip()
+    if not is_valid_phone(phone):
+        print("Invalid phone number")
+        return
+    
     email = input("Enter customer email address: ").strip()
+    if not is_valid_email(email):
+        print("Invalid email address")
+        return
     
     new_customer = {
         "id": generate_customer_id(customers),
@@ -56,6 +69,9 @@ def find_customer(customers, customer_id):
 
 def delete_customer(customers):
     customer_id = input("Enter the id of the customer to delete: ")
+    if not is_postive_integer(customer_id):
+        print("Customer not found")
+        return
     
     customer = find_customer(customers, customer_id)
     
