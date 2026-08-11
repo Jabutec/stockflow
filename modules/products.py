@@ -1,4 +1,6 @@
 import json
+from utils.validators import is_valid_name, is_postive_integer
+from utils.helpers import find_product
 
 def load_products():
     try:
@@ -25,9 +27,24 @@ products = load_products()
 
 def add_product(products):
     product_name = input("Enter the name of product: ").strip().lower()
+    if not is_valid_name(product_name):
+        print("Enter a valid name!")
+        return
+    
     price = float(input("Enter the price of the product: ").strip())
+    if not is_postive_integer(price):
+        print("Invalid Price!")
+        return
+    
     quantity = int(input("Enter the number of products: "))
+    if not is_postive_integer(quantity):
+        print("Invalid quantity!")
+        return
+    
     category = input("Enter the category of the product: ").strip().lower()
+    if not is_valid_name(category):
+        print("Invalid category!")
+        return
     
     new_product = {
         "id" : generate_next_id(products),
@@ -54,6 +71,9 @@ def list_products(products):
 def update_product(products):
     list_products(products)
     product_ID = int(input("Enter the ID of product to update: "))
+    if not is_postive_integer(product_ID):
+        print("Invalid ID!")
+        return
     
     product = find_product(products,product_ID)
     
@@ -70,6 +90,9 @@ def update_product(products):
 def delete_product(products):
     list_products(products)
     product_ID = int(input("Enter the ID of the product you want to delete: "))
+    if not is_postive_integer(product_ID):
+            print("Invalid ID!")
+            return
     
     product = find_product(products,product_ID)
     
@@ -79,12 +102,6 @@ def delete_product(products):
         print("Product has been deleted!")
         return True
     return False
-
-def find_product(products, product_ID):
-    for product in products:
-        if product_ID == product["id"]:
-            return product
-    return None
 
 
 def search_product(products,name):
@@ -97,6 +114,10 @@ def search_product(products,name):
 
 def handle_search(products):
     name =input("Enter the name of the product you want to search: ").strip().lower()
+    if not is_valid_name(name):
+        print("Invalid name")
+        return
+    
     results = search_product(products,name)
     
     if results:

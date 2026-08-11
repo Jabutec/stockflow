@@ -1,5 +1,6 @@
 import json
 from utils.validators import is_valid_name, is_valid_phone, is_valid_email, is_postive_integer
+from utils.helpers import find_customer
 
 def load_customers():
     try:
@@ -61,11 +62,7 @@ def list_customers(customers):
         print(f"Email: {customer['email']}")
         print("-" * 20)
         
-def find_customer(customers, customer_id):
-    for customer in customers:
-        if customer_id == customer["id"]:
-            return customer
-    return None
+
 
 def delete_customer(customers):
     customer_id = input("Enter the id of the customer to delete: ")

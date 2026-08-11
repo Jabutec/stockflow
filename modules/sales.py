@@ -1,6 +1,7 @@
 import json
-from modules.products import find_product, save_products
-from modules.customers import  find_customer, save_customers
+from modules.products import save_products
+from utils.helpers import find_product, find_customer
+from utils.validators import is_postive_integer
 
 
 def load_sales():
@@ -29,8 +30,19 @@ sales = load_sales()
         
 def sell_product(products, customers, sales):
     product_ID = int(input("Enter the ID of the product you want to sell: "))
+    if not is_postive_integer(product_ID):
+        print("Invalid ID!")
+        return
+    
     quantity = int(input("Enter the quantity of the product to sell: "))
+    if not is_postive_integer(quantity):
+        print("Invalid Qunatity!")
+        return
+    
     customer_id = int(input("Enter the customer ID: "))
+    if not is_postive_integer(customer_id):
+            print("Invalid ID!")
+            return
     
     customer =  find_customer(customers , customer_id)
     product = find_product(products,product_ID)
