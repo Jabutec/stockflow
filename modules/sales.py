@@ -52,7 +52,7 @@ def sell_product(products, customers, sales):
             product["quantity"] -= quantity
             new_sale = {
                 "id": generate_sale_id(sales),
-                "Customer_id": customer["id"],
+                "customer_id": customer["id"],
                 "product": product["name"], 
                 "price": product["price"], 
                 "quantity": quantity, 
@@ -71,6 +71,7 @@ def view_sales(sales):
     print("----------Sales-----------")
     for sale in sales:
         print(f"id: {sale['id']}")
+        print(f"Customer ID: {sale['customer_id']}")
         print(f"Name: {sale['product']}")
         print(f"Price: R {sale['price']:.2f}")
         print(f"Quantity: {sale['quantity']}")

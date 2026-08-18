@@ -1,19 +1,23 @@
 from modules.products import products ,add_product, list_products, update_product,handle_search,delete_product
-from modules.sales import sales, sell_product
-from modules.customers import customers , add_customer, list_customers, delete_customer
+from modules.sales import sales, sell_product, view_sales
+from modules.customers import customers , add_customer, list_customers, delete_customer, handle_customer_search
+from reports import sales_summary, generate_report
 
 while True:
     print("-----Business Management System-----")
     print("1. Add products")
-    print("2. List Products")
+    print("2. List products")
     print("3. Update products")
     print("4. Delete products")
-    print("5. Search Products")
-    print("6. Sell Products")
-    print("7. Add customer")
-    print("8. list Customers")
-    print("9. delete customer")
-    print("10. Exit")
+    print("5. Search products")
+    print("6. Sell products")
+    print("7. View Sales")
+    print("8. Add customer")
+    print("9. list customers")
+    print("10. delete customer")
+    print("11. Search customer")
+    print("12. Generate report")
+    print("13. Exit")
     
     
     choice = input("Enter you choice: ")
@@ -29,14 +33,20 @@ while True:
     elif choice == "5":
         handle_search(products)
     elif choice == "6":
-        sell_product(products,sales, customers)
+        sell_product(products,customers, sales)
     elif choice == "7":
-        add_customer(customers)
+        view_sales(sales)
     elif choice == "8":
-        list_customers(customers)
+        add_customer(customers)
     elif choice == "9":
-        delete_customer(customers)
+        list_customers(customers)
     elif choice == "10":
+        delete_customer(customers)
+    elif choice == "11":
+        handle_customer_search(customers)
+    elif choice == "12":
+        generate_report(sales)
+    elif choice == "13":
         print("Exiting...")
         break
     else:

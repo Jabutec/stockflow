@@ -65,7 +65,7 @@ def list_customers(customers):
 
 
 def delete_customer(customers):
-    customer_id = input("Enter the id of the customer to delete: ")
+    customer_id = int(input("Enter the id of the customer to delete: "))
     if not is_postive_integer(customer_id):
         print("Customer not found")
         return
@@ -84,6 +84,25 @@ def search_customer(customers, name):
         if name.lower() in customer["name"]:
             matches.append(customer)
     return matches
+
+def handle_customer_search(customers):
+    name = input("Enter the name of the customer: ").strip().lower()
+    if not is_valid_name(name):
+        print("Customer not found")
+        return
+    
+    result = search_customer(customers,name)
+    if result:
+        for customer in customers:
+            print(f"ID: {customer['id']}")
+            print(f"Name: {customer['name']}")
+            print(f"Phone: {customer['phone']}")
+            print(f"Email: {customer['email']}")
+            print("-" * 20)
+    else:
+        print("customer not found")
+    
+    
 
 
         
