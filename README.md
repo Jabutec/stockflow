@@ -1,56 +1,88 @@
 # StockFlow
 
-A CLI-based inventory and sales management system built with Python.
+**StockFlow is a lightweight Point-of-Sale (POS) system built for small and growing businesses.**
 
-StockFlow began as a simple CRUD learning project and has progressively evolved into a more complete business management system with product management, customer management, sales tracking, data persistence, input validation, and reusable utilities.
+It is designed to help businesses manage day-to-day sales, products, customers, and inventory through a simple operational system.
 
-## Features
+StockFlow is being developed with small and medium-sized businesses in mind, with a focus on practical operations, simplicity, and accessibility.
+
+## Current Features
 
 - Product management
-- Customer management
 - Inventory tracking
-- Sales recording
+- Sales processing
+- Customer management
 - Sales history
-- JSON data persistence
-- Input validation
-- Unique IDs for products, customers, and sales
-- Reusable helper utilities
+- Automatic stock updates after sales
+- Product and customer search
+- Unique sale IDs
+- Structured data models
+- Database-backed data storage
 
-## Development Progress
+## Tech Stack
 
-StockFlow is developed incrementally, with each milestone introducing concepts commonly used in real-world software systems.
+- **Python** — core application logic
+- **SQLite** — database
+- **Pydantic** — data schemas and models
+- **Pytest** — automated testing
 
-| Version | Focus                               | Status    |
-| ------- | ----------------------------------- | --------- |
-| V1.0    | Python CRUD Foundation              | Completed |
-| V1.1    | JSON Data Persistence               | Completed |
-| V1.2    | IDs and Data Relationships          | Completed |
-| V1.3    | Input Validation and Utilities      | Completed |
-| V2.0    | SQLite Database Integration         | Planned   |
-| V2.1    | SQL Queries and Reporting           | Planned   |
-| Future  | OOP, API, UI and Advanced Analytics | Planned   |
+## Project Structure
 
-## About StockFlow
+```text
+StockFlow/
+│
+├── data/
+│   ├── stockflow.db
+│   ├── products.json
+│   ├── sales.json
+│   └── customers.json
+│
+├── tests/
+│
+├── models/
+│
+├── main.py
+└── README.md
+```
 
-StockFlow is a learning-driven business management system designed to strengthen Python and software development skills by evolving a basic CRUD application into a more realistic inventory and sales management solution.
+> The project structure is actively evolving as StockFlow moves from JSON-based storage toward a structured database architecture.
 
-The project focuses on applying practical software development concepts, including:
+## Development
 
-- CRUD operations
-- Data persistence
-- Input validation
-- Modular project structure
-- Reusable utilities
-- Data relationships
-- Database integration
-- SQL
-- Reporting and analytics
-- Object-oriented programming
+StockFlow is currently under active development.
 
-The goal is to simulate the process of building, improving, and scaling a business system rather than completing a collection of isolated coding exercises.
+The project is transitioning from its original JSON-based data storage approach to a SQLite database with structured Pydantic models.
 
-## Project Direction
+Automated testing is being introduced alongside the new architecture to ensure the core functionality remains reliable as the system evolves.
 
-StockFlow will continue to evolve beyond its original JSON-based implementation. The next major milestone is migrating the persistence layer to SQLite and introducing relational database concepts and SQL queries.
+## Current Development Direction
 
-The project will remain focused on practical learning while progressively developing into a more complete business management system.
+The current development focus is:
+
+1. Establish structured data schemas
+2. Transition data storage from JSON to SQLite
+3. Add data validation
+4. Expand automated testing
+5. Strengthen the core POS functionality
+
+The existing JSON files are currently retained during the transition and may be removed once the database implementation is fully established.
+
+## Planned Features
+
+- Improved POS interface
+- Offline-first operation
+- Receipt generation
+- Business reporting and analytics
+- WhatsApp-based POS interaction
+- API integration
+- Additional business and payment integrations
+
+## Vision
+
+StockFlow aims to make modern business operations more accessible to small and medium-sized businesses.
+
+A business should be able to manage its sales and inventory whether it operates from a physical storefront, sells online, or primarily takes orders through platforms such as WhatsApp.
+
+The long-term goal is to provide a flexible POS system that can adapt to how different small businesses actually operate.
+
+**Built by Flexure.**
